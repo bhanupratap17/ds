@@ -1,95 +1,81 @@
-//impliment stack using array
 #include <stdio.h>
-#include <conio.h>
-#define N 5
-int stack[N];
-int top = -1;
+#define N 5  // Define the maximum size of the stack
 
-void push()
-{
-    int x;
-    printf("enter value: ");
-    scanf("%d", &x);
-    if (top == N - 1)
-    {
-        printf("overflow\n");
-    }
-    else
-    {
+int stack[N];
+int top = -1;  // Initialize the top of the stack
+
+// Function to push an element onto the stack
+void push() {
+    if (top == N - 1) {
+        printf("Overflow\n");
+    } else {
+        int x;
+        printf("Enter value: ");
+        scanf("%d", &x);
         top++;
         stack[top] = x;
+        printf("%d pushed onto stack\n", x);
     }
 }
 
-void pop()
-{
-    int item;
-    if (top == -1)
-    {
-        printf("stack is underflow\n");
-    }
-    else
-    {
-        item = stack[top];
+// Function to pop an element from the stack
+void pop() {
+    if (top == -1) {
+        printf("Stack is underflow\n");
+    } else {
+        int item = stack[top];
         top--;
-        printf("%d\n", item);
+        printf("%d popped from stack\n", item);
     }
 }
 
-void peek()
-{
-    if (top == -1)
-    {
-        printf("stack is underflow\n");
-    }
-    else
-    {
-        printf("%d\n", stack[top]);
+// Function to peek at the top element of the stack
+void peek() {
+    if (top == -1) {
+        printf("Stack is underflow\n");
+    } else {
+        printf("Top element is %d\n", stack[top]);
     }
 }
 
-void display()
-{
-    int i;
-    if (top == -1)
-    {
-        printf("stack is empty\n");
-    }
-    else
-    {
-        for (i = top; i >= 0; i--)
-        {
-            printf("%d ", stack[i]);
+// Function to display all elements in the stack
+void display() {
+    if (top == -1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Stack elements:\n");
+        for (int i = top; i >= 0; i--) {
+            printf("%d\n", stack[i]);
         }
-        printf("\n");
     }
 }
 
-int main()
-{
+// Main function to provide a menu-driven interface
+int main() {
     int choice;
-    do
-    {
-        printf("enter choice: 1.push\n2.pop\n3.peek\n4.display\n");
-        printf("enter your choice : ");
+    do {
+        printf("Enter choice:\n1. Push\n2. Pop\n3. Peek\n4. Display\n0. Exit\n");
+        printf("Enter your choice: ");
         scanf("%d", &choice);
-        switch (choice)
-        {
-        case 1:
-            push();
-            break;
-        case 2:
-            pop();
-            break;
-        case 3:
-            peek();
-            break;
-        case 4:
-            display();
-            break;
-        default:
-            printf("invalid choice\n");
-            break;
+        switch (choice) {
+            case 1:
+                push();
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                peek();
+                break;
+            case 4:
+                display();
+                break;
+            case 0:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice\n");
+                break;
         }
     } while (choice != 0);
     return 0;
