@@ -27,18 +27,22 @@ void enqueue(int x)
     }
 }
 
-void dequeue()
-{
+void dequeue(){
     struct node *temp;
-    if (front == NULL && rear == NULL)
-    {
-        printf("Queue is underflow\n");
+    if(front == NULL && rear == NULL){
+        printf("queue is underflow\n");
     }
-    else
-    {
+    else if(front == rear) {
         temp = front;
-        front = front->next;
+        front = rear = NULL;
         free(temp);
+        printf("dequeued element.\n");
+    }
+    else{
+        temp = front;
+        front = temp->next;
+        free(temp);
+        printf("dequeued element.\n");
     }
 }
 
